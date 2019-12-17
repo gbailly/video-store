@@ -8,6 +8,9 @@ public class Customer {
     private String name;
     private Vector rentals = new Vector();
 
+    private double totalAmount;
+    private int frequentRenterPoints;
+
     public Customer(final String name) {
         this.name = name;
     }
@@ -20,9 +23,16 @@ public class Customer {
         return name;
     }
 
+    public double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public int getFrequentRenterPoints() {
+        return frequentRenterPoints;
+    }
+
     public String statement() {
-        double totalAmount = 0;
-        int frequentRenterPoints = 0;
+        init();
         Enumeration rentals = this.rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
         while (rentals.hasMoreElements()) {
@@ -62,5 +72,10 @@ public class Customer {
         result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
 
         return result;
+    }
+
+    private void init() {
+        totalAmount = 0;
+        frequentRenterPoints = 0;
     }
 }
