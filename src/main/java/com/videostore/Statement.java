@@ -3,7 +3,7 @@ package com.videostore;
 import java.util.Enumeration;
 import java.util.Vector;
 
-public class Customer {
+public class Statement {
 
     private String name;
     private Vector rentals = new Vector();
@@ -11,7 +11,7 @@ public class Customer {
     private double totalAmount;
     private int frequentRenterPoints;
 
-    public Customer(final String name) {
+    public Statement(final String name) {
         this.name = name;
     }
 
@@ -31,7 +31,7 @@ public class Customer {
         return frequentRenterPoints;
     }
 
-    public String statement() {
+    public String execute() {
         init();
         Enumeration rentals = this.rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
