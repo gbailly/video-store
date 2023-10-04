@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Statement {
 
-    private String name;
-    private List<Rental> rentals = new ArrayList<>();
+    private final String name;
+    private final List<Rental> rentals = new ArrayList<>();
 
     private double totalAmount;
     private int frequentRenterPoints;
@@ -15,7 +15,7 @@ public class Statement {
         this.name = name;
     }
 
-    public void addRental(Rental rental) {
+    public void addRental(final Rental rental) {
         rentals.add(rental);
     }
 
