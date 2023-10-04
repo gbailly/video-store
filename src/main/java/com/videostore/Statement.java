@@ -36,14 +36,10 @@ public class Statement {
     public String execute() {
         init();
         String result = "Rental Record for " + getName() + "\n";
-        for (Rental rental : rentals) {
+        for (final Rental rental : rentals) {
             final double totalAmount = rental.calculateTotalAmount();
 
-            frequentRenterPoints++;
-
-            if (rental.getMovieType() == NEW_RELEASE && rental.getDaysRented() > 1) {
-                frequentRenterPoints++;
-            }
+            frequentRenterPoints += rental.calculateFrequentRenterPoints();
 
             result += "\t" + rental.getMovieTitle() + "\t" + String.valueOf(totalAmount) + "\n";
             this.totalAmount += totalAmount;

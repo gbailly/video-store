@@ -1,5 +1,7 @@
 package com.videostore;
 
+import static com.videostore.MovieType.NEW_RELEASE;
+
 public class Rental {
 
     private final Movie movie;
@@ -42,5 +44,12 @@ public class Rental {
 
     public double calculateTotalAmount() {
         return movie.getBasisAmount() + calculateExtraAmount();
+    }
+
+    public int calculateFrequentRenterPoints() {
+        if (getMovieType() == NEW_RELEASE && getDaysRented() > 1) {
+            return 2;
+        }
+        return 1;
     }
 }
