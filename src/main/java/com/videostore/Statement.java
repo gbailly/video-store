@@ -37,23 +37,21 @@ public class Statement {
         init();
         String result = "Rental Record for " + getName() + "\n";
         for (Rental rental : rentals) {
-            double thisAMount = 0;
+            double totalAmount = rental.getMovieType().getBasisAmount();
 
             // determines the amount for each line
             switch (rental.getMovieType()) {
                 case REGULAR:
-                    thisAMount += 2;
                     if (rental.getDaysRented() > 2) {
-                        thisAMount += (rental.getDaysRented() - 2) * 1.5;
+                        totalAmount += (rental.getDaysRented() - 2) * 1.5;
                     }
                     break;
                 case NEW_RELEASE:
-                    thisAMount += rental.getDaysRented() * 3;
+                    totalAmount += rental.getDaysRented() * 3;
                     break;
                 case CHILDREN:
-                    thisAMount += 1.5;
                     if (rental.getDaysRented() > 3) {
-                        thisAMount += (rental.getDaysRented() - 3) * 1.5;
+                        totalAmount += (rental.getDaysRented() - 3) * 1.5;
                     }
                     break;
             }
@@ -64,8 +62,8 @@ public class Statement {
                 frequentRenterPoints++;
             }
 
-            result += "\t" + rental.getMovieTitle() + "\t" + String.valueOf(thisAMount) + "\n";
-            totalAmount += thisAMount;
+            result += "\t" + rental.getMovieTitle() + "\t" + String.valueOf(totalAmount) + "\n";
+            this.totalAmount += totalAmount;
         }
 
         result += "You owed " + String.valueOf(totalAmount) + "\n";
