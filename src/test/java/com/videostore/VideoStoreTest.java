@@ -1,9 +1,12 @@
 package com.videostore;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import static com.videostore.MovieType.CHILDREN;
+import static com.videostore.MovieType.NEW_RELEASE;
+import static com.videostore.MovieType.REGULAR;
+import static org.junit.Assert.assertEquals;
 
 public class VideoStoreTest {
 
@@ -18,7 +21,7 @@ public class VideoStoreTest {
 
     @Test
     public void testSingleNewReleaseStatement() {
-        statement.addRental(new Rental(new Movie("The Matrix", Movie.NEW_RELEASE), 3));
+        statement.addRental(new Rental(new Movie("The Matrix", NEW_RELEASE), 3));
         statement.execute();
         assertEquals(9.0, statement.getTotalAmount(), DELTA);
         assertEquals(2, statement.getFrequentRenterPoints());
@@ -26,8 +29,8 @@ public class VideoStoreTest {
 
     @Test
     public void testDualNewReleaseStatement() {
-        statement.addRental(new Rental(new Movie("The Matrix", Movie.NEW_RELEASE), 3));
-        statement.addRental(new Rental(new Movie("Inception", Movie.NEW_RELEASE), 3));
+        statement.addRental(new Rental(new Movie("The Matrix", NEW_RELEASE), 3));
+        statement.addRental(new Rental(new Movie("Inception", NEW_RELEASE), 3));
         statement.execute();
         assertEquals(18.0, statement.getTotalAmount(), DELTA);
         assertEquals(4, statement.getFrequentRenterPoints());
@@ -35,7 +38,7 @@ public class VideoStoreTest {
 
     @Test
     public void testSingleChildrenStatement() {
-        statement.addRental(new Rental(new Movie("Despicable Me", Movie.CHILDREN), 3));
+        statement.addRental(new Rental(new Movie("Despicable Me", CHILDREN), 3));
         statement.execute();
         assertEquals(1.5, statement.getTotalAmount(), DELTA);
         assertEquals(1, statement.getFrequentRenterPoints());
@@ -43,9 +46,9 @@ public class VideoStoreTest {
 
     @Test
     public void testMultipleRegularStatement() {
-        statement.addRental(new Rental(new Movie("E.T.", Movie.REGULAR), 1));
-        statement.addRental(new Rental(new Movie("Pulp Fiction", Movie.REGULAR), 2));
-        statement.addRental(new Rental(new Movie("Pirates of the Caribbean", Movie.REGULAR), 3));
+        statement.addRental(new Rental(new Movie("E.T.", REGULAR), 1));
+        statement.addRental(new Rental(new Movie("Pulp Fiction", REGULAR), 2));
+        statement.addRental(new Rental(new Movie("Pirates of the Caribbean", REGULAR), 3));
         statement.execute();
         assertEquals(7.5, statement.getTotalAmount(), DELTA);
         assertEquals(3, statement.getFrequentRenterPoints());
@@ -53,9 +56,9 @@ public class VideoStoreTest {
 
     @Test
     public void testStatementString() {
-        statement.addRental(new Rental(new Movie("E.T.", Movie.REGULAR), 1));
-        statement.addRental(new Rental(new Movie("Pulp Fiction", Movie.REGULAR), 2));
-        statement.addRental(new Rental(new Movie("Pirates of the Caribbean", Movie.REGULAR), 3));
+        statement.addRental(new Rental(new Movie("E.T.", REGULAR), 1));
+        statement.addRental(new Rental(new Movie("Pulp Fiction", REGULAR), 2));
+        statement.addRental(new Rental(new Movie("Pirates of the Caribbean", REGULAR), 3));
         assertEquals(
                 "Rental Record for Fred\n"
                         + "\tE.T.\t2.0\n"

@@ -14,8 +14,8 @@ public class Rental {
         return daysRented;
     }
 
-    public int getMoviePriceCode() {
-        return movie.getPriceCode();
+    public MovieType getMovieType() {
+        return movie.getMovieType();
     }
 
     public String getMovieTitle() {

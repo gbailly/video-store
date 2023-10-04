@@ -3,6 +3,8 @@ package com.videostore;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.videostore.MovieType.NEW_RELEASE;
+
 public class Statement {
 
     private final String name;
@@ -38,17 +40,17 @@ public class Statement {
             double thisAMount = 0;
 
             // determines the amount for each line
-            switch (rental.getMoviePriceCode()) {
-                case Movie.REGULAR:
+            switch (rental.getMovieType()) {
+                case REGULAR:
                     thisAMount += 2;
                     if (rental.getDaysRented() > 2) {
                         thisAMount += (rental.getDaysRented() - 2) * 1.5;
                     }
                     break;
-                case Movie.NEW_RELEASE:
+                case NEW_RELEASE:
                     thisAMount += rental.getDaysRented() * 3;
                     break;
-                case Movie.CHILDREN:
+                case CHILDREN:
                     thisAMount += 1.5;
                     if (rental.getDaysRented() > 3) {
                         thisAMount += (rental.getDaysRented() - 3) * 1.5;
@@ -58,7 +60,7 @@ public class Statement {
 
             frequentRenterPoints++;
 
-            if (rental.getMoviePriceCode() == Movie.NEW_RELEASE && rental.getDaysRented() > 1) {
+            if (rental.getMovieType() == NEW_RELEASE && rental.getDaysRented() > 1) {
                 frequentRenterPoints++;
             }
 

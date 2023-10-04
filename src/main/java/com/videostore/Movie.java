@@ -2,23 +2,20 @@ package com.videostore;
 
 public class Movie {
 
-    public static final int REGULAR = 0;
-    public static final int NEW_RELEASE = 1;
-    public static final int CHILDREN = 2;
-
     private final String title;
-    private final int priceCode;
 
-    public Movie(String title, int priceCode) {
+    private final MovieType movieType;
+
+    public Movie(final String title, final MovieType movieType) {
         this.title = title;
-        this.priceCode = priceCode;
+        this.movieType = movieType;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public int getPriceCode() {
-        return priceCode;
+    public MovieType getMovieType() {
+        return movieType;
     }
 }
