@@ -38,7 +38,7 @@ public class Statement {
             double thisAMount = 0;
 
             // determines the amount for each line
-            switch (rental.getMovie().getPriceCode()) {
+            switch (rental.getMoviePriceCode()) {
                 case Movie.REGULAR:
                     thisAMount += 2;
                     if (rental.getDaysRented() > 2) {
@@ -58,11 +58,11 @@ public class Statement {
 
             frequentRenterPoints++;
 
-            if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE && rental.getDaysRented() > 1) {
+            if (rental.getMoviePriceCode() == Movie.NEW_RELEASE && rental.getDaysRented() > 1) {
                 frequentRenterPoints++;
             }
 
-            result += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(thisAMount) + "\n";
+            result += "\t" + rental.getMovieTitle() + "\t" + String.valueOf(thisAMount) + "\n";
             totalAmount += thisAMount;
         }
 
