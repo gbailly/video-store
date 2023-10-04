@@ -1,12 +1,12 @@
 package com.videostore;
 
-import java.util.Enumeration;
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Statement {
 
     private String name;
-    private Vector rentals = new Vector();
+    private List<Rental> rentals = new ArrayList<>();
 
     private double totalAmount;
     private int frequentRenterPoints;
@@ -16,7 +16,7 @@ public class Statement {
     }
 
     public void addRental(Rental rental) {
-        rentals.addElement(rental);
+        rentals.add(rental);
     }
 
     public String getName() {
@@ -33,38 +33,36 @@ public class Statement {
 
     public String execute() {
         init();
-        Enumeration rentals = this.rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
-        while (rentals.hasMoreElements()) {
+        for (Rental rental : rentals) {
             double thisAMount = 0;
-            Rental each = (Rental) rentals.nextElement();
 
             // determines the amount for each line
-            switch (each.getMovie().getPriceCode()) {
+            switch (rental.getMovie().getPriceCode()) {
                 case Movie.REGULAR:
                     thisAMount += 2;
-                    if (each.getDaysRented() > 2) {
-                        thisAMount += (each.getDaysRented() - 2) * 1.5;
+                    if (rental.getDaysRented() > 2) {
+                        thisAMount += (rental.getDaysRented() - 2) * 1.5;
                     }
                     break;
                 case Movie.NEW_RELEASE:
-                    thisAMount += each.getDaysRented() * 3;
+                    thisAMount += rental.getDaysRented() * 3;
                     break;
                 case Movie.CHILDREN:
                     thisAMount += 1.5;
-                    if (each.getDaysRented() > 3) {
-                        thisAMount += (each.getDaysRented() - 3) * 1.5;
+                    if (rental.getDaysRented() > 3) {
+                        thisAMount += (rental.getDaysRented() - 3) * 1.5;
                     }
                     break;
             }
 
             frequentRenterPoints++;
 
-            if (each.getMovie().getPriceCode() == Movie.NEW_RELEASE && each.getDaysRented() > 1) {
+            if (rental.getMovie().getPriceCode() == Movie.NEW_RELEASE && rental.getDaysRented() > 1) {
                 frequentRenterPoints++;
             }
 
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAMount) + "\n";
+            result += "\t" + rental.getMovie().getTitle() + "\t" + String.valueOf(thisAMount) + "\n";
             totalAmount += thisAMount;
         }
 
