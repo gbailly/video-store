@@ -24,7 +24,7 @@ public class VideoStoreTest {
         statement.addRental(new Rental(new Movie("The Matrix", NEW_RELEASE), 3));
         statement.execute();
         assertEquals(9.0, statement.getTotalAmount(), DELTA);
-        assertEquals(2, statement.getFrequentRenterPoints());
+        assertEquals(2, statement.getLoyaltyPoints());
     }
 
     @Test
@@ -33,7 +33,7 @@ public class VideoStoreTest {
         statement.addRental(new Rental(new Movie("Inception", NEW_RELEASE), 3));
         statement.execute();
         assertEquals(18.0, statement.getTotalAmount(), DELTA);
-        assertEquals(4, statement.getFrequentRenterPoints());
+        assertEquals(4, statement.getLoyaltyPoints());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class VideoStoreTest {
         statement.addRental(new Rental(new Movie("Despicable Me", CHILDREN), 3));
         statement.execute();
         assertEquals(1.5, statement.getTotalAmount(), DELTA);
-        assertEquals(1, statement.getFrequentRenterPoints());
+        assertEquals(1, statement.getLoyaltyPoints());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class VideoStoreTest {
         statement.addRental(new Rental(new Movie("Pirates of the Caribbean", REGULAR), 3));
         statement.execute();
         assertEquals(7.5, statement.getTotalAmount(), DELTA);
-        assertEquals(3, statement.getFrequentRenterPoints());
+        assertEquals(3, statement.getLoyaltyPoints());
     }
 
     @Test
@@ -65,7 +65,7 @@ public class VideoStoreTest {
                         + "\tPulp Fiction\t2.0\n"
                         + "\tPirates of the Caribbean\t3.5\n"
                         + "You owed 7.5\n"
-                        + "You earned 3 frequent renter points\n",
+                        + "You earned 3 loyalty points\n",
                 statement.execute());
     }
 }

@@ -3,15 +3,13 @@ package com.videostore;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.videostore.MovieType.NEW_RELEASE;
-
 public class Statement {
 
     private final String name;
     private final List<Rental> rentals = new ArrayList<>();
 
     private double totalAmount;
-    private int frequentRenterPoints;
+    private int loyaltyPoints;
 
     public Statement(final String name) {
         this.name = name;
@@ -29,8 +27,8 @@ public class Statement {
         return totalAmount;
     }
 
-    public int getFrequentRenterPoints() {
-        return frequentRenterPoints;
+    public int getLoyaltyPoints() {
+        return loyaltyPoints;
     }
 
     public String execute() {
@@ -39,20 +37,20 @@ public class Statement {
         for (final Rental rental : rentals) {
             final double totalAmount = rental.calculateTotalAmount();
 
-            frequentRenterPoints += rental.calculateFrequentRenterPoints();
+            loyaltyPoints += rental.calculateLoyaltyPoints();
 
             result += "\t" + rental.getMovieTitle() + "\t" + String.valueOf(totalAmount) + "\n";
             this.totalAmount += totalAmount;
         }
 
         result += "You owed " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points\n";
+        result += "You earned " + String.valueOf(loyaltyPoints) + " loyalty points\n";
 
         return result;
     }
 
     private void init() {
         totalAmount = 0;
-        frequentRenterPoints = 0;
+        loyaltyPoints = 0;
     }
 }

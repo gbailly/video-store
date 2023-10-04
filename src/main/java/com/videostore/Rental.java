@@ -46,7 +46,7 @@ public class Rental {
         return movie.getBasisAmount() + calculateExtraAmount();
     }
 
-    public int calculateFrequentRenterPoints() {
+    public int calculateLoyaltyPoints() {
         if (getMovieType() == NEW_RELEASE && getDaysRented() > 1) {
             return 2;
         }
