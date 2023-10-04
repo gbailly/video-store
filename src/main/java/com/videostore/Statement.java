@@ -38,23 +38,7 @@ public class Statement {
         String result = "Rental Record for " + getName() + "\n";
         for (Rental rental : rentals) {
             double totalAmount = rental.getMovieType().getBasisAmount();
-
-            // determines the amount for each line
-            switch (rental.getMovieType()) {
-                case REGULAR:
-                    if (rental.getDaysRented() > 2) {
-                        totalAmount += (rental.getDaysRented() - 2) * 1.5;
-                    }
-                    break;
-                case NEW_RELEASE:
-                    totalAmount += rental.getDaysRented() * 3;
-                    break;
-                case CHILDREN:
-                    if (rental.getDaysRented() > 3) {
-                        totalAmount += (rental.getDaysRented() - 3) * 1.5;
-                    }
-                    break;
-            }
+            totalAmount += rental.calculateExtraAmount();
 
             frequentRenterPoints++;
 
