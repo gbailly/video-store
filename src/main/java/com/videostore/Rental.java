@@ -39,4 +39,8 @@ public class Rental {
         }
         return 0;
     }
+
+    public double calculateTotalAmount() {
+        return movie.getBasisAmount() + calculateExtraAmount();
+    }
 }

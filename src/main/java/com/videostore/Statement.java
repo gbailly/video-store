@@ -37,8 +37,7 @@ public class Statement {
         init();
         String result = "Rental Record for " + getName() + "\n";
         for (Rental rental : rentals) {
-            double totalAmount = rental.getMovieType().getBasisAmount();
-            totalAmount += rental.calculateExtraAmount();
+            final double totalAmount = rental.calculateTotalAmount();
 
             frequentRenterPoints++;
 

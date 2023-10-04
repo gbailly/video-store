@@ -18,4 +18,8 @@ public class Movie {
     public MovieType getMovieType() {
         return movieType;
     }
+
+    public double getBasisAmount() {
+        return movieType.getBasisAmount();
+    }
 }
