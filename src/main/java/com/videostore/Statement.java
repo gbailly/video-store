@@ -33,20 +33,18 @@ public class Statement {
 
     public String execute() {
         init();
-        String result = "Rental Record for " + getName() + "\n";
+        final StringBuilder result = new StringBuilder("Rental Record for " + getName() + "\n");
         for (final Rental rental : rentals) {
             final double totalAmount = rental.calculateTotalAmount();
-
             loyaltyPoints += rental.calculateLoyaltyPoints();
-
-            result += "\t" + rental.getMovieTitle() + "\t" + String.valueOf(totalAmount) + "\n";
+            result.append("\t").append(rental.getMovieTitle()).append("\t").append(totalAmount).append("\n");
             this.totalAmount += totalAmount;
         }
 
-        result += "You owed " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(loyaltyPoints) + " loyalty points\n";
+        result.append("You owed ").append(totalAmount).append("\n");
+        result.append("You earned ").append(loyaltyPoints).append(" loyalty points\n");
 
-        return result;
+        return result.toString();
     }
 
     private void init() {
